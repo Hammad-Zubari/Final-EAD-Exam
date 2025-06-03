@@ -1,6 +1,5 @@
 const express = require('express');
 
-
 const mongoose = require('mongoose');
 const Book = require('./models/Book');  
 
@@ -22,7 +21,7 @@ mongoose.connect(db)
 
 app.get('/books', (req, res) => {
     Book.find()
-     blog.save()
+     Book.save()
         .then((result) => {
             res.json(result);
         })
