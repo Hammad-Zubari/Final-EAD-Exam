@@ -1,8 +1,8 @@
 const express = require('express');
-const morgan = require('morgan');
+
 
 const mongoose = require('mongoose');
-const Blog = require('./models/Book');  
+const Book = require('./models/Book');  
 
 const app = express();
 
@@ -18,4 +18,52 @@ mongoose.connect(db)
     .catch((err) => {
         console.log(err);
     });
+
+
+app.get('/books', (req, res) => {
+    Book.find()
+     blog.save()
+        .then((result) => {
+            res.json(result);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
+
+app.get('/books/:id', (req, res) => {
+    const id = req.params.id;
+    Book.findById(id)
+        .then((result) => {
+            res.json(result);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
+
+
+app.post('/books', (req, res) => {
+    const book = new Book(req.body);
+    book.save()
+        .then((result) => {
+            res.json(result);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
+
+
+
+app.delete('/books/:id', (req, res) => {
+    const id = req.params.id;
+    Book.findByIdAndRemove(id)
+        .then((result) => {
+            res.json(result);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+});
 
